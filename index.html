@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select Products to Order</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #000; /* page background black */
+      margin: 0;
+      padding: 20px;
+      color: #fff; /* default text color white */
+    }
+
+    h2 {
+      text-align: center;
+      color: #25D366; /* visible on black */
+      margin-bottom: 25px;
+      display: inline-block;
+      border-bottom: 2px solid #25D366;
+      padding-bottom: 5px;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .form-section {
+      max-width: 600px;
+      margin: 0 auto 30px;
+      background: #111; /* form background dark */
+      padding: 20px;
+      border-radius: 10px;
+      border: 1px solid #555;
+      box-shadow: 0 2px 5px rgba(255,255,255,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      color: #fff;
+    }
+
+    .form-section label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    .form-section input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #555;
+      border-radius: 5px;
+      font-size: 1em;
+      background-color: #222;
+      color: #fff;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .product {
+      background: #111; /* product card background black */
+      border: 1px solid #555;
+      border-radius: 10px;
+      width: 260px;
+      height: 420px;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(255,255,255,0.1);
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: #fff;
+    }
+
+    .product img {
+      width: 100%;
+      height: 180px;
+      object-fit: contain;
+      border-radius: 8px;
+      background-color: #222;
+    }
+
+    .product h3, .product p, .price {
+      color: #fff; /* text inside product cards white */
+    }
+
+    .quantity-control {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .quantity-control button {
+      background-color: #25D366;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      width: 30px;
+      height: 30px;
+      font-size: 1.2em;
+      cursor: pointer;
+    }
+
+    .quantity-control button:hover {
+      background-color: #1EBE57;
+    }
+
+    .quantity-control input {
+      width: 50px;
+      text-align: center;
+      font-size: 1em;
+      border: 1px solid #555;
+      border-radius: 5px;
+      padding: 5px;
+      background-color: #222;
+      color: #fff;
+    }
+
+    .combo-select {
+      width: 100%;
+      padding: 8px;
+      margin: 10px 0;
+      border: 1px solid #555;
+      border-radius: 5px;
+      font-size: 1em;
+      background-color: #222;
+      color: #fff;
+    }
+
+    .total-section {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 1.2em;
+      color: #fff;
+      font-weight: bold;
+    }
+
+    .delivery-fee {
+      text-align: center;
+      font-size: 1em;
+      color: #ccc;
+      margin-top: 5px;
+    }
+
+    .order-btn {
+      display: block;
+      width: 220px;
+      margin: 20px auto 0;
+      background-color: #25D366;
+      color: white;
+      text-decoration: none;
+      padding: 12px 20px;
+      border-radius: 50px;
+      font-weight: bold;
+      text-align: center;
+      cursor: pointer;
+      border: none;
+      font-size: 1em;
+      transition: background-color 0.3s ease;
+    }
+
+    .order-btn:hover {
+      background-color: #1EBE57;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 10px;
+      }
+
+      .container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .product {
+        width: 90%;
+        max-width: 350px;
+        height: auto;
+      }
+
+      .product img {
+        height: 160px;
+      }
+
+      .order-btn {
+        width: 80%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h2>Order Your Matahari Products</h2>
+  </div>
+
+  <div class="form-section">
+    <label for="name">Your Name:</label>
+    <input type="text" id="name" placeholder="Enter your full name" required>
+
+    <label for="phone">Phone Number:</label>
+    <input type="text" id="phone" placeholder="Enter your phone number" maxlength="15" required>
+  </div>
+
+  <div class="container">
+
+    <!-- Product 1 -->
+    <div class="product">
+      <img src="images/product1.jpg" alt="Floor Cleaner Lavender">
+      <h3>Floor Cleaner Lavender</h3>
+      <p>Gentle lavender fragrance with powerful cleaning for every floor surface.</p>
+      <p class="price">Price: S$ 9.90</p>
+      <div class="quantity-control">
+        <button onclick="changeQty(this, -1)">-</button>
+        <input type="number" value="0" min="0" data-price="9.90" data-name="Floor Cleaner Lavender - S$ 9.90">
+        <button onclick="changeQty(this, 1)">+</button>
+      </div>
+    </div>
+
+    <!-- Product 4 -->
+    <div class="product">
+      <img src="images/product4.jpg" alt="Floor Cleaner Sandalwood">
+      <h3>Floor Cleaner Sandalwood</h3>
+      <p>Refreshing sandalwood scent with deep cleaning formula for a spotless finish.</p>
+      <p class="price">Price: S$ 9.90</p>
+      <div class="quantity-control">
+        <button onclick="changeQty(this, -1)">-</button>
+        <input type="number" value="0" min="0" data-price="9.90" data-name="Floor Cleaner Sandalwood - S$ 9.90">
+        <button onclick="changeQty(this, 1)">+</button>
+      </div>
+    </div>
+
+    <!-- Product 2 -->
+    <div class="product">
+      <img src="images/product2.jpg" alt="Matahari Sandal Uthipatti">
+      <h3>Matahari Sandal Uthipatti</h3>
+      <p>Traditional sandalwood incense symbolizing purity, calm, and natural fragrance (3 Tubes-150 Sticks).</p>
+      <p class="price">Price: S$ 10.00</p>
+      <div class="quantity-control">
+        <button onclick="changeQty(this, -1)">-</button>
+        <input type="number" value="0" min="0" data-price="10.00" data-name="Matahari Sandal Uthipatti - S$ 10.00">
+        <button onclick="changeQty(this, 1)">+</button>
+      </div>
+    </div>
+
+    <!-- Product 3: Combo Dropdown, no separate price -->
+    <div class="product">
+      <img src="images/product3.jpg" alt="Javadhu Pal Sambrani">
+      <h3>Javadhu Pal Sambrani</h3>
+      <p>A calming blend of Javadhu essence and pure sambrani resin. Creates a soothing, divine aroma during prayer or relaxation.</p>
+
+      <label for="sambraniCombo" style="font-weight: bold; margin-top: 8px;">Select Combo:</label>
+      <select id="sambraniCombo" class="combo-select" onchange="updateSambraniPrice()">
+        <option value="3.00" data-name="Javadhu Pal Sambrani (12 pcs) - S$ 3.00">12 pcs - S$ 3.00</option>
+        <option value="7.20" data-name="Javadhu Pal Sambrani (30 pcs) - S$ 7.20">30 pcs - S$ 7.20</option>
+      </select>
+
+      <div class="quantity-control">
+        <button onclick="changeQty(this, -1)">-</button>
+        <input type="number" value="0" min="0" data-price="3.00" data-name="Javadhu Pal Sambrani (12 pcs) - S$ 3.00">
+        <button onclick="changeQty(this, 1)">+</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="total-section" id="totalDisplay">Total: S$ 0.00</div>
+  <div class="delivery-fee">Exclude Delivery</div>
+
+  <button class="order-btn" id="orderBtn" onclick="sendWhatsApp()" disabled>Order Now via WhatsApp</button>
+
+  <script>
+    const nameInput = document.getElementById('name');
+    const phoneInput = document.getElementById('phone');
+    const orderBtn = document.getElementById('orderBtn');
+
+    phoneInput.addEventListener('keypress', e => { if (!/[0-9]/.test(e.key)) e.preventDefault(); });
+    document.querySelectorAll('.quantity-control input').forEach(input => input.addEventListener('input', checkForm));
+    nameInput.addEventListener('input', checkForm);
+    phoneInput.addEventListener('input', checkForm);
+
+    function changeQty(button, change) {
+      const input = button.parentElement.querySelector('input');
+      let value = parseInt(input.value) + change;
+      if (value < 0) value = 0;
+      input.value = value;
+      updateTotal();
+      checkForm();
+    }
+
+    function updateTotal() {
+      let total = 0;
+      document.querySelectorAll('.quantity-control input').forEach(input => {
+        const qty = parseInt(input.value);
+        const price = parseFloat(input.dataset.price);
+        total += qty * price;
+      });
+      document.getElementById('totalDisplay').textContent = `Total: S$ ${total.toFixed(2)}`;
+    }
+
+    function checkForm() {
+      const nameFilled = nameInput.value.trim() !== '';
+      const phoneFilled = phoneInput.value.trim() !== '';
+      const qtySelected = Array.from(document.querySelectorAll('.quantity-control input'))
+        .some(input => parseInt(input.value) > 0);
+      orderBtn.disabled = !(nameFilled && phoneFilled && qtySelected);
+    }
+
+    function updateSambraniPrice() {
+      const combo = document.getElementById('sambraniCombo');
+      const selectedOption = combo.options[combo.selectedIndex];
+      const newPrice = parseFloat(selectedOption.value);
+      const input = combo.parentElement.querySelector('.quantity-control input');
+
+      input.dataset.price = newPrice.toFixed(2);
+      input.dataset.name = selectedOption.dataset.name;
+
+      updateTotal();
+      checkForm();
+    }
+
+    function sendWhatsApp() {
+      const name = nameInput.value.trim();
+      const phone = phoneInput.value.trim();
+      let total = 0;
+      const items = [];
+
+      document.querySelectorAll('.quantity-control input').forEach(input => {
+        const qty = parseInt(input.value);
+        const price = parseFloat(input.dataset.price);
+        const nameItem = input.dataset.name;
+        if (qty > 0) {
+          total += qty * price;
+          items.push(`${nameItem} (x${qty})`);
+        }
+      });
+
+      if (!name || !phone || items.length === 0) {
+        alert("Please fill in your name, phone number, and select at least one product.");
+        return;
+      }
+
+      const message =
+        `Hello, I would like to order:%0A%0A` +
+        items.map(p => "- " + p).join("%0A") +
+        `%0A%0ATotal: S$ ${total.toFixed(2)}%0A(Exclude Delivery)%0A%0A` +
+        `Name: ${encodeURIComponent(name)}%0A` +
+        `Phone: ${encodeURIComponent(phone)}`;
+
+      const whatsappLink = `https://wa.me/6583354264?text=${message}`;
+      window.open(whatsappLink, '_blank');
+    }
+  </script>
+
+</body>
+</html>
